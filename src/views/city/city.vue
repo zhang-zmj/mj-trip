@@ -12,8 +12,9 @@
     </form>
 
     <van-tabs v-model:active="tabActive" color="#ff9854">
-      <van-tab title="国内港澳台">国内港澳台</van-tab>
-      <van-tab title="海外">海外</van-tab>
+      <template v-for="(value, key, index) in allCity" :key="key">
+        <van-tab :title="value.title">国内港澳台</van-tab>
+      </template>
     </van-tabs>
   </div>
 </template>
@@ -21,6 +22,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { getCityAll } from '@/services/modules/city'
 const router = useRouter()
 const value = ref('')
 
@@ -32,6 +34,12 @@ const onCancel = () => {
 
 // 2、tab栏的切换
 const tabActive = ref(0)
+
+// 3、网络请求
+const allCity = ref({})
+getCityAll().then(res => {
+  allCity.value = res.data
+})
 </script>
 
 <style lang="less" scoped>
