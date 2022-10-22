@@ -10,6 +10,11 @@
         @cancel="onCancel"
       />
     </form>
+
+    <van-tabs v-model:active="tabActive" color="#ff9854">
+      <van-tab title="国内港澳台">国内港澳台</van-tab>
+      <van-tab title="海外">海外</van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -24,6 +29,13 @@ const onSearch = () => {}
 const onCancel = () => {
   router.back()
 }
+
+// 2、tab栏的切换
+const tabActive = ref(0)
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.city {
+  --van-tab-line-height: 44px;
+}
+</style>
