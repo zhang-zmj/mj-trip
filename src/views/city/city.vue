@@ -1,21 +1,28 @@
 <template>
   <div class="city">
-    <form action="/">
-      <van-search
-        v-model="value"
-        shape="round"
-        show-action
-        placeholder="城市/区域/位置"
-        @search="onSearch"
-        @cancel="onCancel"
-      />
-    </form>
+    <div class="top">
+      <form action="/">
+        <van-search
+          v-model="value"
+          shape="round"
+          show-action
+          placeholder="城市/区域/位置"
+          @search="onSearch"
+          @cancel="onCancel"
+        />
+      </form>
 
-    <van-tabs v-model:active="tabActive" color="#ff9854">
-      <template v-for="(value, key, index) in allCities" :key="key">
-        <van-tab :title="value.title">国内港澳台</van-tab>
+      <van-tabs v-model:active="tabActive" color="#ff9854">
+        <template v-for="(value, key, index) in allCities" :key="key">
+          <van-tab :title="value.title"></van-tab>
+        </template>
+      </van-tabs>
+    </div>
+    <div class="content">
+      <template v-for="item in 100">
+        <div>列表数据：{{ item }}</div>
       </template>
-    </van-tabs>
+    </div>
   </div>
 </template>
 
@@ -46,5 +53,14 @@ const { allCities } = storeToRefs(cityStore)
 <style lang="less" scoped>
 .city {
   --van-tab-line-height: 44px;
+  .top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .content {
+    margin-top: 98px;
+  }
 }
 </style>
