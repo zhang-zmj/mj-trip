@@ -12,12 +12,8 @@
 </template>
 
 <script setup>
-
 import HomeNavBar from './component/home-nav-bar.vue'
 import HomeLocation from './component/home-location.vue'
-
-
-
 </script>
 
 <style lang="less" scoped>
