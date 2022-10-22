@@ -1,22 +1,13 @@
 <template>
   <div class="city-group">
-
-
-
-
-    
-    <!-- 第一种请求数据方法 -->
-    <!-- <template v-for="item in allCities[tabActive]?.cities"> -->
-    <template v-for="(group, index) in groupData?.cities" :key="index">
-      <div class="group-item">
-        <h2 class="title">标题：{{ group.group }}</h2>
-        <div class="list">
-          <template v-for="(item, indey) in group.cities" :key="indey">
-            <div class="city">{{ item.cityName }}</div>
-          </template>
-        </div>
-      </div>
-    </template>
+    <van-index-bar>
+      <template v-for="(group, index) in groupData?.cities" :key="index">
+        <van-index-anchor :index="group.group" />
+        <template v-for="(item, indey) in group.cities" :key="indey">
+          <van-cell :title="item.cityName" />
+        </template>
+      </template>
+    </van-index-bar>
   </div>
 </template>
 

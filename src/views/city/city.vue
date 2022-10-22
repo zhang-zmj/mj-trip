@@ -22,7 +22,9 @@
 
     <!-- 底部滑动部分 -->
     <div class="content">
-      <city-group :group-data="currentGroup" />
+      <template v-for="(value, key, index) in allCities" :key="key">
+        <city-group v-show="tabActive === key" :group-data="value" />
+      </template>
     </div>
   </div>
 </template>
@@ -53,6 +55,11 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
 </script>
 
 <style lang="less" scoped>
+.top {
+  position: relative;
+  z-index: 9;
+}
+
 .city {
   // 布局滚动
   .content {
