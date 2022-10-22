@@ -1,9 +1,29 @@
 <template>
   <div class="home">
-    <h2>home</h2>
+    <!-- 1、头部标题 -->
+    <home-nav-bar />
+    <!-- 2、图片 -->
+    <div class="banner">
+      <img src="@/assets/img/home/banner.webp" alt="" />
+    </div>
+    <!-- 3、位置 -->
+    <home-location />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
 
-<style lang="less" scoped></style>
+import HomeNavBar from './component/home-nav-bar.vue'
+import HomeLocation from './component/home-location.vue'
+
+
+
+</script>
+
+<style lang="less" scoped>
+.banner {
+  img {
+    width: 100%;
+  }
+}
+</style>
