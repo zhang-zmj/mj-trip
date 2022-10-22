@@ -12,7 +12,7 @@
     </form>
 
     <van-tabs v-model:active="tabActive" color="#ff9854">
-      <template v-for="(value, key, index) in allCity" :key="key">
+      <template v-for="(value, key, index) in allCities" :key="key">
         <van-tab :title="value.title">国内港澳台</van-tab>
       </template>
     </van-tabs>
@@ -22,7 +22,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getCityAll } from '@/services/modules/city'
+import useCityStore from '@/stores/modules/city'
+import { storeToRefs } from 'pinia'
+
 const router = useRouter()
 const value = ref('')
 
@@ -36,10 +38,9 @@ const onCancel = () => {
 const tabActive = ref(0)
 
 // 3、网络请求
-const allCity = ref({})
-getCityAll().then(res => {
-  allCity.value = res.data
-})
+const cityStore = useCityStore()
+cityStore.fetchAllCitiesData()
+const { allCities } = storeToRefs(cityStore)
 </script>
 
 <style lang="less" scoped>
