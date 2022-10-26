@@ -21,20 +21,29 @@ import HomeNavBar from './component/home-nav-bar.vue'
 import HomeLocation from './component/home-location.vue'
 import HomeCategories from './component/home-categories.vue'
 import HomeContent from './component/home-content.vue'
+import { onMounted } from '@vue/runtime-core'
 
 // 发送网络请求
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
 homeStore.fetchCategoresData()
-homeStore.fetchHouseListData()
 
+// 监听window窗口的滚动
+const scrollListenerHandler = () => {
+  const clientHeight = document.documentElement.clientHeight
+  const scrollTop = document.documentElement.scrollTop
+  const scrollHeight = document.documentElement.scrollHeight //整个home内容的高度
+  if (clientHeight + scrollTop >= scrollHeight) {
+    homeStore.fetchHouseListData()
+  }
+}
 
-
-
-
-
-
-
+onMounted(() => {
+  window.addEventListener('scroll', scrollListenerHandler)
+}),
+  onUnmounted(() => {
+    window.removeEventListener('scroll', scrollListenerHandler)
+  })
 </script>
 
 <style lang="less" scoped>
