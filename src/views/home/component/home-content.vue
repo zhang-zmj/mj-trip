@@ -4,7 +4,7 @@
     <div class="list">
       <template v-for="(item, index) in houselist" :key="item.data.houseId">
         <house-item-v9 v-if="item.discoveryContentType === 9" :item-data="item.data" />
-        <house-item-v3 v-if="item.discoveryContentType === 3" :item-data="item.data" />
+        <house-item-v3 v-else-if="item.discoveryContentType === 3" :item-data="item.data" />
       </template>
     </div>
   </div>
