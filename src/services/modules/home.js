@@ -6,3 +6,18 @@ export function getHomeHotSuggests() {
   })
 }
 
+export function getHomeCategories() {
+  return mjRequest.get({
+    url: "/home/categories"
+  })
+}
+
+export function getHomeHouselist(currentPage) {
+  return mjRequest.get({
+    url: "/home/houselist",
+    params: {
+      page: currentPage
+    }
+  })
+}
+

@@ -117,7 +117,6 @@ const onConfirm = value => {
 
 // 热门建议
 const homeStore = useHomeStore()
-homeStore.fetchHotSuggestData()
 const { hotSuggests } = storeToRefs(homeStore)
 
 // 搜索按钮
@@ -228,6 +227,8 @@ const searchBtnClick = () => {
 }
 
 .search-btn {
+  display: flex;
+  justify-content: center;
   .btn {
     width: 342px;
     height: 38px;
