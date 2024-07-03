@@ -38,7 +38,9 @@ import CityGroup from './component/city-group.vue'
 
 const router = useRouter()
 const value = ref('')
-const onSearch = () => {}
+const onSearch = val => {
+  console.log('------', val)
+}
 const onCancel = () => {
   router.back()
 }
@@ -55,10 +57,10 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
 </script>
 
 <style lang="less" scoped>
-.top {
-  position: relative;
-  z-index: 9;
-}
+// .top {
+//   position: relative;
+//   z-index: 9;
+// }
 
 .city {
   // 布局滚动

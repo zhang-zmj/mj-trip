@@ -6,6 +6,7 @@
     </div>
     <home-location />
     <home-categories />
+
     <home-content />
   </div>
 </template>
@@ -17,7 +18,6 @@ import HomeNavBar from './component/home-nav-bar.vue'
 import HomeLocation from './component/home-location.vue'
 import HomeCategories from './component/home-categories.vue'
 import HomeContent from './component/home-content.vue'
-import { onMounted, onUnmounted } from '@vue/runtime-core'
 import useScroll from '@/hooks/useScroll'
 import { computed } from '@vue/reactivity'
 
@@ -28,13 +28,24 @@ homeStore.fetchCategoresData()
 homeStore.fetchHouseListData()
 
 // 监听window窗口的滚动
-const { isReachBottom, scrollTop } = useScroll()
+const { isLoading, isReachBottom, scrollTop } = useScroll()
+
 watch(isReachBottom, newValue => {
   if (newValue) {
     homeStore.fetchHouseListData().then(() => {
       isReachBottom.value = false
+      isLoading.value = true
     })
   }
+})
+
+// 搜索框显示的控制！
+// const isShowSearchBar = ref(false)
+// watch(scrolLTop, (newTop) => {
+//isShowSearchBar.value = newTop > 100
+// })
+const isShowSearchBar = computed(() => {
+  return scrollTop.value >= 100
 })
 </script>
 

@@ -77,10 +77,10 @@ const cityClick = () => {
 const postionClick = () => {
   navigator.geolocation.getCurrentPosition(
     res => {
-      console.log('获取位置成功', res)
+      console.log('获取位置成功', res.coords.latitude)
     },
     err => {
-      console.log('获取位置失败', err)
+      console.log('获取位置失败', err.coords.longitude)
     },
     {
       enableHighAccuracy: true,
